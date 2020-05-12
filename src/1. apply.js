@@ -19,7 +19,7 @@ Array.from(arrayLike);
 Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象。 */
 
 /* func.apply(thisArg, [ argsArray]) */
-Function.prototype.apply2 = function (context) {
+Function.prototype.apply2 = function (context = window) {
   context.fn = this;
   let res;
   if (arguments[1]) {
