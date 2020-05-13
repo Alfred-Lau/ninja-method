@@ -20,3 +20,24 @@ Function.prototype.call2 = function (content = window) {
   delete content.fn;
   return result;
 };
+
+/* 为什么需要 套用 eval？ */
+
+Function.prototype.call = function (context, ...args) {
+  var context = context || window;
+  context.fn = this;
+
+  var result = eval('context.fn(...args)');
+
+  delete context.fn;
+  return result;
+};
+
+Function.prototype.apply = function (context, args) {
+  let context = context || window;
+  context.fn = this;
+  let result = eval('context.fn(...args)');
+
+  delete context.fn;
+  return result;
+};
