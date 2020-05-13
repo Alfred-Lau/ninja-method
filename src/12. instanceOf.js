@@ -10,6 +10,7 @@ const instanceOf2 = function (left, right) {
   /* 右值：以不变应万变 */
   let prototype = right.prototype;
   while (true) {
+    /* 说明到了原型链的顶端 */
     if (proto === null) {
       return false;
     }

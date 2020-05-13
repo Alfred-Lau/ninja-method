@@ -1,0 +1,30 @@
+{
+  "name": "ninja-method",
+  "version": "1.0.0",
+  "description": "It  is  a pure util function collection coding by hand",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jest": "^26.0.1"
+  },
+  "jest": {
+    "verbose": true
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alfred-Lau/ninja-method.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alfred-Lau/ninja-method/issues"
+  },
+  "homepage": "https://github.com/Alfred-Lau/ninja-method#readme"
+}
