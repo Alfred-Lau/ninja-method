@@ -1,6 +1,6 @@
 # ninja-method
 
-It  is  a pure util function collection coding by hand
+It is a pure util function collection coding by hand
 
 ## 实现的方法
 
@@ -20,6 +20,7 @@ It  is  a pure util function collection coding by hand
 - 使用 settimeout 实现 setinterval
 - defineProperty
 - 寄生组合继承
+- 浅拷贝
 
 ## polyfill
 
