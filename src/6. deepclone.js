@@ -1,4 +1,4 @@
-/* 
+/*
 
 
 深拷贝: JSON.parse()和JSON.stringify() 问题: 对象里的函数无法被拷贝,原型链里的属性无法被拷贝
@@ -21,19 +21,19 @@ console.log(JSON.parse(JSON.stringify(x)));
 2.3. 然而date对象成了字符串
 
 const obj = {
-    a: '1',
-    arr: [1, 2 ,3],
-    obj1: {
-        o: 1,
-    },
-    b: undefined,
-    c:  Symbol(),
-    date: new Date(),
-    reg: /a/ig,
-    set: new Set([1, 2, 3]),
-    foo: () => {
-        console.log('foo');
-    }
+	a: '1',
+	arr: [1, 2 ,3],
+	obj1: {
+		o: 1,
+	},
+	b: undefined,
+	c:  Symbol(),
+	date: new Date(),
+	reg: /a/ig,
+	set: new Set([1, 2, 3]),
+	foo: () => {
+		console.log('foo');
+	}
 }
 console.log(JSON.parse(JSON.stringify(obj)));
 // { a: '1',
@@ -41,7 +41,7 @@ console.log(JSON.parse(JSON.stringify(obj)));
 //   obj1: { o: 1 },
 //   date: '2019-04-18T08:11:32.866Z',
 //   reg: {},
-//   set: {} 
+//   set: {}
 // }
 
 
@@ -53,4 +53,42 @@ console.log(JSON.parse(JSON.stringify(obj)));
 
 exports.cheatDeepClone = (obj) => JSON.parse(JSON.stringify(obj));
 
-exports.deepClone = (obj) => {};
+exports.deepClone = (obj) => {
+  let result;
+  if (obj === null) {
+    return;
+  }
+
+  if (typeof obj === 'object') {
+    // 排除了 null 之外，是可以认为  obj 为引用类型的
+    result = obj.constructor === Array ? [] : {};
+    for (let j in obj) {
+      result[j] =
+        typeof obj[j] === 'object' ? exports.deepClone(obj[j]) : obj[j];
+    }
+  } else {
+    result = obj;
+  }
+
+  return result;
+};
+
+/* test case */
+
+const source = {
+  age: 39,
+  name: 'liujian',
+  person: {
+    name: 'xxx',
+  },
+};
+
+const source02 = [1, 2, 2, 3, ['ddd']];
+
+const target = exports.deepClone(source);
+const target02 = exports.deepClone(source02);
+source.name = 'xiaobao';
+source.person.name = 'ddd';
+
+console.log('target', target);
+console.log('target02', target02);
