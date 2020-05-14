@@ -61,16 +61,38 @@ exports.deepClone = (obj) => {
 
   if (typeof obj === 'object') {
     // 排除了 null 之外，是可以认为  obj 为引用类型的
-    result = obj.constructor === Array ? [] : {};
+    // result = obj.constructor === Array ? [] : {};
+    result = Array.isArray(obj) === Array ? [] : {};
     for (let j in obj) {
-      result[j] =
-        typeof obj[j] === 'object' ? exports.deepClone(obj[j]) : obj[j];
+      if (obj.hasOwnProperty(j)) {
+        // 只拷贝 对象自己的属性
+        result[j] =
+          typeof obj[j] === 'object' ? exports.deepClone(obj[j]) : obj[j];
+      }
     }
   } else {
     result = obj;
   }
 
   return result;
+};
+
+exports.deepCloneReduce = function DeepClone(target) {
+  const keys = Object.keys(target);
+  return keys.reduce((memo, current) => {
+    const value = target[current];
+    if (typeof value === 'object') {
+      return {
+        ...memo,
+        [current]: DeepClone(value),
+      };
+    }
+
+    return {
+      ...memo,
+      [current]: value,
+    };
+  }, {});
 };
 
 /* test case */
