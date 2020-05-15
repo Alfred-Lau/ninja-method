@@ -1,3 +1,5 @@
+/* 使用的是 原型式继承 */
+
 const create = (target) => {
   function F() {}
   // wrong
