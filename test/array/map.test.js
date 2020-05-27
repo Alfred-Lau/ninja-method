@@ -17,7 +17,6 @@ describe('array map test', function () {
     const result = target.map2(function (item) {
       return item * this.diff;
     }, context);
-    console.log('result', result);
     expect(result).toStrictEqual([10, 20, 30, 40]);
   });
 });
