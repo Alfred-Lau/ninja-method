@@ -10,6 +10,7 @@ Array.prototype.map2 = function (cb, context) {
   // Step 1. 转成数组对象，有 length 属性和 K-V 键值对
   let O = Object(this);
   // Step 2. 无符号右移 0 位，左侧用 0 填充，结果非负
+  /* 该操作符会将第一个操作数向右移动指定的位数。向右被移出的位被丢弃，左侧用0填充。因为符号位变成了 0，所以结果总是非负的。（译注：即便右移 0 个比特，结果也是非负的。） */
   let len = O.length >>> 0;
   // Step 3. cb 不是函数时抛出异常
 
