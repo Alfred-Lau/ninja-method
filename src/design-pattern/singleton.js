@@ -24,7 +24,7 @@ const b = Singleton.getInstance('b');
 
 console.log(a, b, a === b);
 
-// 使用 闭包 优化实现
+// 使用 闭包 优化实现,上述方式 容易被修改 _instance
 
 const ProxySingleton = (function () {
   let _instance = null;
