@@ -25,29 +25,30 @@ SubType.prototype.sayAge=function(){
 
 function extend(subType, superType) {
   let prototype = Object.create(superType.prototype);
+  // 修复原型
   prototype.constructor = subType;
   subType.prototype = prototype;
 }
 
 function SuperType(name) {
-  this.name = name;
-  this.colors = ['r', 'g', 'b'];
+  // this.name = name;
+  // this.colors = ['r', 'g', 'b'];
 }
 
-SuperType.prototype.sayName = function () {
-  console.log(this.name);
-};
+// SuperType.prototype.sayName = function () {
+//   console.log(this.name);
+// };
 
 function SubType(name, age) {
   SuperType.call(this, name);
-  this.age = age;
+  // this.age = age;
 }
 
 extend(SubType, SuperType);
 
-SubType.prototype.sayAge = function () {
-  console.log(this.age);
-};
+// SubType.prototype.sayAge = function () {
+//   console.log(this.age);
+// };
 
 /* test case */
 

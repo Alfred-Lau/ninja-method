@@ -1,4 +1,4 @@
-/* 
+/*
 让实例可以访问到私有属性
 让实例可以访问构造函数原型(constructor.prototype)所在原型链上的属性
 如果构造函数返回的结果不是引用数据类型
@@ -16,17 +16,18 @@ new操作符做了这些事：VIP !!!!
 
 */
 
-const fake_new = (fnConstructor) => {
+const fake_new = (cons) => {
   /* 1. 创建一个全新的对象 */
   let res = {};
 
   /* 2. 绑定原型链连接 */
-  if (fnConstructor.prototype !== null) {
-    res.__proto__ = fnConstructor.prototype;
+  if (cons.prototype !== null) {
+    // !!!!对象的隐式原型指向构造函数的显式原型，因为不能使用 new，所以必须自己构造解决
+    res.__proto__ = cons.prototype;
   }
 
   /* 3. 执行创建 */
-  let ret = fnConstructor.apply(res, Array.prototype.slice.call(arguments, 1));
+  let ret = cons.apply(res, Array.prototype.slice.call(arguments, 1));
 
   if ((typeof ret === 'object' || typeof ret === 'function') && ret !== null) {
     /* 4. 如果构造函数有返回值，并且不为 null， 那么就使用 返回值 */

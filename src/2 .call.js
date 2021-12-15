@@ -1,4 +1,4 @@
-/* 
+/*
 类数组对象转数组的三种方式：
 
 //第一种方法
@@ -21,7 +21,7 @@ Function.prototype.call2 = function (content = window) {
   return result;
 };
 
-/* 为什么需要 套用 eval？ */
+/* 为什么需要 套用 eval？ 老版本es 不支持 rest操作符*/
 
 Function.prototype.call = function (context, ...args) {
   var context = context || window;
